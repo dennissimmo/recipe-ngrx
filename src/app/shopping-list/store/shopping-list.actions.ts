@@ -5,29 +5,48 @@ export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const ADD_INGREDIENTS = 'ADD_INGREDIENTS';
 export const EDIT_INGREDIENT = 'EDIT_INGREDIENT';
 export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
+export const START_EDIT = 'START_EDIT';
+export const STOP_EDIT = 'STOP_EDIT';
 
 export class AddIngredient implements Action {
-  readonly type: string = ADD_INGREDIENT;
+  readonly type = ADD_INGREDIENT;
   constructor(public payload: Ingredient) {
   }
 }
 
 export class AddIngredients implements Action {
-  readonly type: string = ADD_INGREDIENTS;
+  readonly type = ADD_INGREDIENTS;
   constructor(public payload: Ingredient[]) {
   }
 }
 
+export interface IEditAction {
+  index: number;
+  ingredient: Ingredient;
+}
+
 export class EditIngredient implements Action {
-  readonly type: string = EDIT_INGREDIENT;
-  constructor(public payload: { index: number, ingredient: Ingredient }) {
+  readonly type = EDIT_INGREDIENT;
+  constructor(public payload: Ingredient) {
   }
 }
 
 export class DeleteIngredient implements Action {
-  readonly type: string = DELETE_INGREDIENT;
+  readonly type = DELETE_INGREDIENT;
+  payload?: any;
+  constructor() {
+  }
+}
+
+export class StartEdit implements Action {
+  readonly type = START_EDIT;
   constructor(public payload: number) {
   }
 }
 
-export type ShoppingListActions = AddIngredient | AddIngredients | EditIngredient | DeleteIngredient;
+export class StopEdit implements Action {
+  readonly type = STOP_EDIT;
+  payload?: any;
+}
+
+export type ShoppingListActions = AddIngredient | AddIngredients | EditIngredient | DeleteIngredient | StartEdit | StopEdit;
